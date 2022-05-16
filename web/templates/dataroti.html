@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- button tambah start-->
+<div class="m-n2">
+    <a href="{% url 'tambah-roti' %}">
+        <button type="button" class="btn nav-link btn-danger m-4"  style="color: aliceblue;"><i class="fa fa-plus me-2"></i>Tambah</button>
+    </a>
+</div>
+<!-- button tambah end -->
+
+<!-- Table Start -->
+<div class="container-fluid pt-3 px-3">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Daftar Roti</h6>
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                            <tr class="text-dark">
+                                <th scope="col">Kode Roti</th>
+                                <th scope="col">Nama Roti</th>
+                                <th scope="col">Harga Roti</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+                            {% for message in messages %}
+                                    {% if message %}
+                                        <div class="alert alert-success">{{ message }}</div>
+                                    {% endif%}
+                            {% endfor %}
+                            {% for name in data_roti %}
+                            <tr>
+                                <td align="center">{{name.kode}}</td>
+                                <td align="center">{{name.nama}}</td>
+                                <td align="center">{{name.harga}}</td>
+                                <td>
+                                    <a href="{% url 'update-roti' name.id %}">
+                                        <button type="button" class="btn btn-primary">Ubah</button>
+                                    </a>
+                                    <a href="{% url 'hapus-roti' name.id %}"><button type="button" class="btn btn-success" name="hapus_roti">Hapus</button></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Table End -->
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Form Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-sm-12 col-xl-6">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Tambah Roti</h6>
+                <form action="/tambah-roti/" method="post">
+                    {% if pesan %}
+                        <div class="alert alert-success">{{ pesan }}</div>
+                    {% endif%}
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                    <button class="btn btn-primary"> Tambah</button>
+                    <a href="/data-roti/" class="btn btn-danger">Kembali</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Form End -->
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- button tambah start-->
+<div class="m-n2">
+    <a href="{% url 'tambah-jadwal' %}">
+        <button type="button" class="btn nav-link btn-danger m-4"  style="color: aliceblue;"><i class="fa fa-plus me-2"></i>Tambah</button>
+    </a>
+</div>
+<!-- button tambah end -->
+
+<!-- Table Start -->
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+        <div class="col-12">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Jadwal Kunjungan</h6>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nama Sales</th>
+                                <th scope="col">Nama Toko</th>
+                                <th scope="col">Hari Kunjungan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for name in data_jadwal %}
+                            <tr>
+                                <td align>{{name.sales_id}}</td>
+                                <td align>{{name.toko_id}}</td>
+                                <td align>{{name.hari}}</td>
+                                <td align>    
+                                    <a href="{% url 'update-jadwal' name.id %}">
+                                        <button type="button" class="btn btn-primary">Ubah</button>
+                                    </a>
+                                    <a href="{% url 'hapus-jadwal' name.id %}"><button type="button" class="btn btn-success" name="hapus_toko">Hapus</button></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Table End -->
+{% endblock %}
